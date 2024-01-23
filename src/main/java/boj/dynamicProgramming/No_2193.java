@@ -13,7 +13,7 @@ public class No_2193 {
             System.out.println(1);
             return;
         }
-        int[][] arr = new int[n+1][2];
+        long[][] arr = new long[n+1][2];
         arr[1][1] = 1;
         arr[2][0] = 1;
         for (int i = 3; i <= n; i++) {
