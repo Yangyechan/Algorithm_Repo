@@ -22,9 +22,13 @@ public class No_1912 {
         for (int i = 1; i <= n; i++) {
             d[i] = Math.max(0, d[i-1]) + arr[i];
         }
+        int[] tmp = new int[n];
+        for (int i = 1; i <= n; i++) {
+            tmp[i-1] = d[i];
+        }
 
-        Arrays.sort(d);
+        Arrays.sort(tmp);
 
-        System.out.println(d[n]);
+        System.out.println(tmp[n-1]);
     }
 }
