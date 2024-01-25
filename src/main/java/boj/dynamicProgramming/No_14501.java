@@ -14,7 +14,7 @@ public class No_14501 {
         int n = sc.nextInt();
         t = new int[n + 2];
         p = new int[n + 2];
-        d = new int[n + 2]; // 배열의 크기를 1 더 크게 설정하여 1부터 시작하도록 함
+        d = new int[n + 2];
 
         for (int i = 1; i <= n; i++) {
             t[i] = sc.nextInt();
