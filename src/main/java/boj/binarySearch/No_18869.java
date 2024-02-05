@@ -14,7 +14,6 @@ public class No_18869 {
         int M = Integer.parseInt(input[0]);
         int N = Integer.parseInt(input[1]);
         List<StringBuilder> checkList = new ArrayList<>();
-        int ans = 0;
 
         for (int t = 0; t < M; t++) {
             int[] arr = new int[N];
@@ -34,6 +33,7 @@ public class No_18869 {
                 checkList.get(t).append(tmp);
             }
         }
+        int ans = 0;
         for (int i = 0; i < M; i++) {
             String str1 = checkList.get(i).toString();
             for (int j = i + 1; j < M; j++) {
