@@ -42,6 +42,7 @@ public class No_18869 {
             }
         }
         System.out.println(ans);
+
     }
     static int lowerBound(List<Integer> list, int target) {
         int st = 0;
