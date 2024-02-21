@@ -1,142 +1,121 @@
 package BaekjunOnlineJudge.tree;
 
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.io.InputStreamReader;
-//import java.util.ArrayList;
-//import java.util.LinkedList;
-//import java.util.List;
-//import java.util.Queue;
-//
-//public class No_20955 {
-//    static List<List<Integer>> lists = new ArrayList<>();
-//    static boolean[] visited;
-//    static int nodeCnt;
-//    static int lineCnt;
-//    static int ans;
-//    public static void main(String[] args) throws IOException {
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        String[] input = br.readLine().split(" ");
-//        int N = Integer.parseInt(input[0]);
-//        int M = Integer.parseInt(input[1]);
-//
-//        for (int i = 0; i <= N; i++) {
-//            lists.add(new ArrayList<>());
-//        }
-//
-//        for (int i = 0; i < M; i++) {
-//            String[] split = br.readLine().split(" ");
-//            int u = Integer.parseInt(split[0]);
-//            int v = Integer.parseInt(split[1]);
-//            lists.get(u).add(v);
-//            lists.get(v).add(u);
-//        }
-//
-//        visited = new boolean[N + 1];
-//        ans = -1;
-//        for (int i = 1; i <= N; i++) {
-//            if (!visited[i]) {
-//                ans++;
-//                nodeCnt = 0;
-//                lineCnt = 0;
-//                BFS(i);
-//                func();
-//            }
-//        }
-//        System.out.println(ans);
-//    }
-//    static void BFS(int x) {
-//        Queue<Integer> queue = new LinkedList<>();
-//        queue.add(x);
-//
-//        while (!queue.isEmpty()) {
-//            int now = queue.poll();
-//            nodeCnt++;
-//            for (int nxt : lists.get(now)) {
-//                if (!visited[nxt]) {
-//                    lineCnt++;
-//                    visited[nxt] = true;
-//                    queue.offer(nxt);
-//                }
-//            }
-//        }
-//    }
-//    static void func() {
-//        if (nodeCnt >= lineCnt) {
-//            ans += lineCnt - (nodeCnt - 1);
-//        }
-//    }
-//}
 
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
 
 public class No_20955 {
-    static final int MX = 100_000;
+    static int N, M, cnt;
+    static int[] parent;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] split = br.readLine().split(" ");
+        N = Integer.parseInt(split[0]);
+        M = Integer.parseInt(split[1]);
 
-    static int n, m;
-    static int cnt;
-    static int[] p;
+        parent = new int[N + 1];
+        Arrays.fill(parent, -1);
 
-    static int find(int x) {
-        if (p[x] < 0)
-            return x;
-        return p[x] = find(p[x]);
+        cnt = 0;
+        for (int i = 0; i < M; i++) {
+            String[] st = br.readLine().split(" ");
+            int a = Integer.parseInt(st[0]);
+            int b = Integer.parseInt(st[1]);
+            input(a, b);
+        }
+
+        Set<Integer> set = new HashSet<>();
+        for (int i = 1; i <= N; i++) {
+            set.add(find(i));
+        }
+
+        cnt += set.size() - 1;
+        System.out.println(cnt);
+    }
+    static int find(int a) {
+        return parent[a] < 0 ? a : (parent[a] = find(parent[a]));
     }
 
-    static void tryMerge(int u, int v) {
-        u = find(u);
-        v = find(v);
-        if (u == v) {
+    static boolean union(int a, int b) {
+        a = find(a);
+        b = find(b);
+
+        if (a != b) {
+            parent[b] = a;
+            return true;
+        }
+
+        return false;
+    }
+
+    static void input(int a, int b) {
+        if (!union(a, b)) {
             cnt++;
-            return;
         }
-        if (p[u] > p[v]) {
-            int temp = u;
-            u = v;
-            v = temp;
-        }
-        p[u] += p[v];
-        p[v] = u;
-    }
-
-
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        n = sc.nextInt();
-        m = sc.nextInt();
-        p = new int[n + 2];
-        Arrays.fill(p, -1);
-
-        for (int i = 0; i < m; i++) {
-            int u = sc.nextInt();
-            int v = sc.nextInt();
-            tryMerge(u, v);
-        }
-
-        System.out.println(n - m - 1 + 2 * cnt);
-
-        sc.close();
     }
 }
 
-/*
-유니온 파인드를 활용한 별해입니다.
 
-간선을 입력 받으면서 merge를 시도합니다.
-두 정점의 부모가 동일하지 않다면 merge를 수행합니다.
-두 정점의 부모가 동일한 경우
-해당 간선은 불필요한 간선이므로
-자르는 연산 횟수인 cnt를 증가시킵니다.
-
-이 연산을 완료한 뒤에 남은 간선 수는 총 (m - cnt)개가 됩니다.
-여기서 간선을 연결해 (n - 1)개의 간선을 확보해야 트리가 구성됩니다.
-따라서 연결해야 하는 간선 수는 (n - 1) - (m - cnt)개가 됩니다.
-
-그러므로 간선을 잇고 자르는 총 연산 수는
-(n - 1) - (m - cnt) + cnt = n - m - 1 + 2*cnt이며,
-이를 답으로 출력합니다.
-*/
+//import java.io.*;
+//import java.util.*;
+//
+////  @author : blog.naver.com/kerochuu
+////  @date : 2021. 8. 16.
+//public class No_20955 {
+//
+//    static int N, M, count = 0;
+//    static int[] parents;
+//
+//    public static void main(String[] args) throws IOException {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        StringTokenizer st = new StringTokenizer(br.readLine());
+//        N = stoi(st.nextToken());
+//        M = stoi(st.nextToken());
+//
+//        parents = new int[N + 1];
+//        for (int i = 1; i <= N; i++) {
+//            parents[i] = -1;
+//        }
+//
+//        for (int i = 0; i < M; i++) {
+//            st = new StringTokenizer(br.readLine());
+//            input(stoi(st.nextToken()), stoi(st.nextToken()));
+//        }
+//
+//        HashSet<Integer> hs = new HashSet<>();
+//        for (int i = 1; i <= N; i++) {
+//            hs.add(find(i));
+//        }
+//        count += hs.size() - 1;
+//
+//        System.out.println(count);
+//    }
+//
+//    private static void input(int a, int b) {
+//        if (!union(a, b)) {
+//            count++;
+//        }
+//    }
+//
+//    private static boolean union(int a, int b) {
+//        a = find(a);
+//        b = find(b);
+//        if (a != b) {
+//            parents[b] = a;
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    private static int find(int a) {
+//        return parents[a] < 0 ? a : (parents[a] = find(parents[a]));
+//    }
+//
+//    private static int stoi(String input) {
+//        return Integer.parseInt(input);
+//    }
+//}
