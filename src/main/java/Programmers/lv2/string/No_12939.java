@@ -1,4 +1,4 @@
-package programmers.lv2.string;
+package Programmers.lv2.string;
 
 import java.util.*;
 public class No_12939 {

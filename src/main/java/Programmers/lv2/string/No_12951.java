@@ -1,4 +1,4 @@
-package programmers.lv2.string;
+package Programmers.lv2.string;
 
 public class No_12951 {
     static class Solution {
