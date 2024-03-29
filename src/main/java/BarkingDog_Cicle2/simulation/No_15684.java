@@ -4,7 +4,7 @@ package BarkingDog_Cicle2.simulation;
 
 import java.io.*;
 import java.util.*;
-public class No_15684 { // 나중에
+public class No_15684 { // 나중에 다시
     static int n,m,h;
     static int map[][];
     static int min = 4;
