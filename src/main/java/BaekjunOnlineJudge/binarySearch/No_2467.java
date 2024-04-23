@@ -17,8 +17,8 @@ public class No_2467 {
         int mr = 0;
         for (int i = 0; i < n-1; i++) {
             int left = i+1;
-            int right = n-1;
-            while (left <= right) {
+            int right = n;
+            while (left < right) {
                 int mid = (left + right) / 2;
                 int sum = Math.abs(arr[mid] + arr[i]);
 
@@ -29,7 +29,7 @@ public class No_2467 {
                 }
 
                 if (arr[mid] >= -arr[i]) {
-                    right = mid - 1;
+                    right = mid;
                 }else {
                     left = mid + 1;
                 }
