@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class No_2110 {
+public class No_2110 { // 다음에 다시
 
     public static int[] house;
 
