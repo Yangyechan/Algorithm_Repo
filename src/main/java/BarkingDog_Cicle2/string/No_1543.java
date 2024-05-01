@@ -1,4 +1,4 @@
-package BarkingDog_Cicle2;
+package BarkingDog_Cicle2.string;
 
 import java.io.BufferedReader;
 import java.io.IOException;
