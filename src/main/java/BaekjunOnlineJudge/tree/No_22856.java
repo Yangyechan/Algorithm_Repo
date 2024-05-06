@@ -78,7 +78,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class No_22856 {
-    static int N, moveCnt, lastNode, visitedCnt;
+    static int N, lastNode, visitedCnt;
     static Node[] tree;
     static boolean[] visited;
     static List<Integer> similarInOrderStatus, inOrderStatus;
