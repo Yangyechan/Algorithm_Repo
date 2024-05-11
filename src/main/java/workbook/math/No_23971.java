@@ -1,4 +1,4 @@
-package workbook;
+package workbook.math;
 
 import java.io.BufferedReader;
 import java.io.IOException;
