@@ -1,4 +1,4 @@
-package workbook;
+package workbook.string;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class No_2607 {
                 result++;
             }
             // 비교 문자열이 짧은 경우 (제거)
-            else if (first.length() == str.length() - 1 && str.length() - 1 == cnt) {
+            else if (first.length() == str.length() - 1 && first.length() == cnt) {
                 result++;
             }
             // 비교 문자열이 긴 경우 (추가)
