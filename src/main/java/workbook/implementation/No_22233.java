@@ -1,4 +1,4 @@
-package workbook.hash;
+package workbook.implementation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
